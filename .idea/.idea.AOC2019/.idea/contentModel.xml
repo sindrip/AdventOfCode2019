@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2019.2/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.2/system/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_AOC2019.1527103462.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p=".git/info/exclude" t="IncludeRecursive" />
+      <e p="AOC2019.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="src" t="Include">
+        <e p="ConsoleApp" t="IncludeRecursive">
+          <e p="ConsoleApp.csproj" t="IncludeRecursive" />
+          <e p="Program.cs" t="Include" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp3.1" t="Include">
+                <e p="ConsoleApp.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Days" t="IncludeRecursive">
+          <e p="Day01.cs" t="Include" />
+          <e p="Day02.cs" t="Include" />
+          <e p="Day03.cs" t="Include" />
+          <e p="Day04.cs" t="Include" />
+          <e p="Day05.cs" t="Include" />
+          <e p="Day06.cs" t="Include" />
+          <e p="DayRunner.cs" t="Include" />
+          <e p="Days.csproj" t="IncludeRecursive" />
+          <e p="IDay.cs" t="Include" />
+          <e p="IntCode" t="Include">
+            <e p="AddOp.cs" t="Include" />
+            <e p="EqualsOp.cs" t="Include" />
+            <e p="HaltOp.cs" t="Include" />
+            <e p="IOp.cs" t="Include" />
+            <e p="InputOp.cs" t="Include" />
+            <e p="JumpIfFalseOp.cs" t="Include" />
+            <e p="JumpIfTrueOp.cs" t="Include" />
+            <e p="LessThanOp.cs" t="Include" />
+            <e p="MultiplyOp.cs" t="Include" />
+            <e p="OpCode.cs" t="Include" />
+            <e p="OutputOp.cs" t="Include" />
+            <e p="Vm.cs" t="Include" />
+          </e>
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="input" t="Include">
+            <e p="day01.txt" t="Include" />
+            <e p="day02.txt" t="Include" />
+            <e p="day03.txt" t="Include" />
+            <e p="day05.txt" t="Include" />
+          </e>
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp3.1" t="Include">
+                <e p="Days.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+      </e>
+    </e>
+  </component>
+</project>
