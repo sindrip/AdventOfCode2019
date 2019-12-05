@@ -18,6 +18,8 @@ namespace Days
             return result.ToString();
         }
 
+        // Note how this works because of the monotonically increasing constraint of the digits of the number
+        // A number cannot contain the same digit twice without them occurring in sequence
         private int CountPaths(int lastDigit, int[] counter, int noDigits, string currentNumber, bool part2)
         {
             if (noDigits == 6)
