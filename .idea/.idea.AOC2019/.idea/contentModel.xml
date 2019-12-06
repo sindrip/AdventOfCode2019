@@ -50,6 +50,8 @@
             <e p="day02.txt" t="Include" />
             <e p="day03.txt" t="Include" />
             <e p="day05.txt" t="Include" />
+            <e p="day06.txt" t="Include" />
+            <e p="day06test.txt" t="Include" />
           </e>
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
