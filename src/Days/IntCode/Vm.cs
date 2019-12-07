@@ -1,23 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Days.IntCode
 {
     public class Vm
     {
-        private bool _running;
+        public bool Running { get; private set; }
+        public bool WaitForInput { get; private set; }
         private int _ip;
         private List<int> _initialMemory;
         private List<int> _memory;
         public List<int> Output;
         private List<int> _initialInput;
         private int _inputIndex;
-        public List<int> Input;
+        public Queue<int> Input;
 
         public Vm(IList<int> initialMemory)
         {
             _initialMemory = new List<int>(initialMemory);
+            _initialInput = new List<int>();
             Reset();
         }
 
@@ -31,7 +34,7 @@ namespace Days.IntCode
         public void Reset()
         {
             _memory = new List<int>(_initialMemory);
-            Input = new List<int>(_initialInput);
+            Input = new Queue<int>(_initialInput);
             _inputIndex = 0;
             _ip = 0;
             Output = new List<int>();
@@ -39,8 +42,8 @@ namespace Days.IntCode
 
         public void Run()
         {
-            _running = true;
-            while (_running)
+            Running = true;
+            while (Running && !WaitForInput)
                 Step();
         }
 
@@ -91,7 +94,6 @@ namespace Days.IntCode
                     var arg2 = ParamValue(parameters[1], op.ParameterMode[1]);
                     var arg3 = ParamValue(parameters[2], op.ParameterMode[2]);
                     MemSet(arg3, arg1 + arg2);
-                    Console.WriteLine($"add: {arg3} : {arg1} + {arg2}");
                     break;
                 }
                 case OpCode.Multiply:
@@ -100,22 +102,26 @@ namespace Days.IntCode
                     var arg2 = ParamValue(parameters[1], op.ParameterMode[1]);
                     var arg3 = ParamValue(parameters[2], op.ParameterMode[2]);
                     MemSet(arg3, arg1 * arg2);
-                    Console.WriteLine($"mult: {arg3} : {arg1} * {arg2}");
                     break;
                 }
                 case OpCode.Input:
                 {
                     var input = GetInput();
                     var arg1 = ParamValue(parameters[0], op.ParameterMode[0]);
-                    MemSet(arg1, input);
-                    Console.WriteLine($"input: {arg1} : {input}");
+                    if (WaitForInput)
+                    {
+                        _ip -= op.OpWidth;
+                    }
+                    else
+                    {
+                        MemSet(arg1, input);
+                    }
                     break;
                 }
                 case OpCode.Output:
                 {
                     var arg1 = ParamValue(parameters[0], op.ParameterMode[0]);
                     SendOutput(arg1);
-                    Console.WriteLine($"output: {arg1}");
                     break;
                 }
                 case OpCode.JumpIfTrue:
@@ -123,12 +129,7 @@ namespace Days.IntCode
                     var arg1 = ParamValue(parameters[0], op.ParameterMode[0]);
                     var arg2 = ParamValue(parameters[1], op.ParameterMode[1]);
                     if (arg1 != 0)
-                    {
-                        Console.WriteLine($"JmpIfT: ip = {arg2}");
                         _ip = arg2 - op.OpWidth;
-                    }
-                    else 
-                        Console.WriteLine("JmpIfT: No jump");
                     break;
                 }
                 case OpCode.JumpIfFalse:
@@ -136,12 +137,7 @@ namespace Days.IntCode
                     var arg1 = ParamValue(parameters[0], op.ParameterMode[0]);
                     var arg2 = ParamValue(parameters[1], op.ParameterMode[1]);
                     if (arg1 == 0)
-                    {
-                        Console.WriteLine($"JmpIfF: ip = {arg2}");
                         _ip = arg2 - op.OpWidth;
-                    }
-                    else
-                        Console.WriteLine("JmpIfF: No jump");
                     break;
                 }
                 case OpCode.LessThan:
@@ -150,15 +146,9 @@ namespace Days.IntCode
                     var arg2 = ParamValue(parameters[1], op.ParameterMode[1]);
                     var arg3 = ParamValue(parameters[2], op.ParameterMode[2]);
                     if (arg1 < arg2)
-                    {
-                        Console.WriteLine($"LT: {arg1} < {arg2} -> {arg3} = 1");
                         MemSet(arg3, 1);
-                    }
                     else
-                    {
-                        Console.WriteLine($"LT: {arg1} < {arg2} -> {arg3} = 0");
                         MemSet(arg3, 0);
-                    }
                     break;
                 }
                 case OpCode.Equals:
@@ -167,20 +157,14 @@ namespace Days.IntCode
                     var arg2 = ParamValue(parameters[1], op.ParameterMode[1]);
                     var arg3 = ParamValue(parameters[2], op.ParameterMode[2]);
                     if (arg1 == arg2)
-                    {
-                        Console.WriteLine($"EQ: {arg1} == {arg2} -> {arg3} = 1");
                         MemSet(arg3, 1);
-                    }
                     else
-                    {
-                        Console.WriteLine($"EQ: {arg1} == {arg2} -> {arg3} = 0");
                         MemSet(arg3, 0);
-                    }
                     break;
                 }
                 case OpCode.Halt:
                 {
-                    _running = false;
+                    Running = false;
                     break;
                 }
                 default:
@@ -194,8 +178,30 @@ namespace Days.IntCode
         public int MemAccess(int address) => _memory[address];
         public void MemSet(int address, int value) => _memory[address] = value;
 
-        private int GetInput() => Input[_inputIndex++];
-        
+        //private int GetInput() => Input[_inputIndex++];
+        private int GetInput()
+        {
+            if (Input.Count == 0)
+            {
+                WaitForInput = true;
+                return -1;
+            }
+
+            return Input.Dequeue();
+        }
+
+        public void SetInitialInput(List<int> l)
+        {
+            _initialInput = new List<int>(l);   
+            Reset();
+        }
+        public void AddInput(int n)
+        {
+            WaitForInput = false;
+            Input.Enqueue(n);
+        }
+
         private void SendOutput(int output) => Output.Add(output);
+        public int LastOutput() => Output.Last();
     }
 }

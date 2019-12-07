@@ -27,8 +27,6 @@ namespace Days
                     .ToHashSet();
                 _adjacency.Add(v, adj);
             }
-            //Console.WriteLine(string.Join(',' , _edges));
-            //PrintDictionary(_edgeMap);
         }
 
         public string Part1()
@@ -70,10 +68,10 @@ namespace Days
             {
                 foreach (var v in _adjacency[current])
                 {
-                    var d = dist[current] + 1;
                     dist[v] = Math.Min(dist[v], dist[current] + 1);
                 }
                 unvisited.Remove(current);
+                
                 var next = ("", int.MaxValue);
                 foreach (var v in unvisited)
                 {
