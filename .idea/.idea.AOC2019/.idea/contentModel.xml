@@ -28,6 +28,7 @@
           <e p="Day05.cs" t="Include" />
           <e p="Day06.cs" t="Include" />
           <e p="Day07.cs" t="Include" />
+          <e p="Day08.cs" t="Include" />
           <e p="DayRunner.cs" t="Include" />
           <e p="Days.csproj" t="IncludeRecursive" />
           <e p="Extensions" t="Include">
@@ -56,6 +57,7 @@
             <e p="day05.txt" t="Include" />
             <e p="day06.txt" t="Include" />
             <e p="day07.txt" t="Include" />
+            <e p="day08.txt" t="Include" />
           </e>
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
