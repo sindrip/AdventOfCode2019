@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using Days.Extensions;
 using Days.IntCode;
 
@@ -9,12 +10,12 @@ namespace Days
 {
     public class Day07 : IDay
     {
-        private List<int> _instructions;
+        private List<BigInteger> _instructions;
         public Day07()
         {
             _instructions = File.ReadAllText("input/day07.txt")
                 .Split(',')
-                .Select(x => int.Parse(x)).ToList();
+                .Select(x => BigInteger.Parse(x)).ToList();
         }
         public string Part1()
         {
@@ -27,25 +28,25 @@ namespace Days
                 new Vm(_instructions)
             };
 
-            var max = int.MinValue;
+            var max = new BigInteger(int.MinValue);
             foreach (var p in perms)
             {
-                vms[0].SetInitialInput(new List<int>() {p[0], 0});
+                vms[0].SetInitialInput(new List<BigInteger>() {p[0], 0});
                 vms[0].Reset();
                 vms[0].Run();
-                vms[1].SetInitialInput(new List<int>() {p[1], vms[0].Output[0]});
+                vms[1].SetInitialInput(new List<BigInteger>() {p[1], vms[0].Output[0]});
                 vms[1].Reset();
                 vms[1].Run();
-                vms[2].SetInitialInput(new List<int>() {p[2], vms[1].Output[0]});
+                vms[2].SetInitialInput(new List<BigInteger>() {p[2], vms[1].Output[0]});
                 vms[2].Reset();
                 vms[2].Run();
-                vms[3].SetInitialInput(new List<int>() {p[3], vms[2].Output[0]});
+                vms[3].SetInitialInput(new List<BigInteger>() {p[3], vms[2].Output[0]});
                 vms[3].Reset();
                 vms[3].Run();
-                vms[4].SetInitialInput(new List<int>() {p[4], vms[3].Output[0]});
+                vms[4].SetInitialInput(new List<BigInteger>() {p[4], vms[3].Output[0]});
                 vms[4].Reset();
                 vms[4].Run();
-                max = Math.Max(max, vms[4].Output[0]);
+                max = BigInteger.Max(max, vms[4].Output[0]);
             }
             return max.ToString();
         }
@@ -64,7 +65,7 @@ namespace Days
         
         public string Part2()
         {
-            var i = new List<int>() {5, 6, 7, 8, 9};
+            var i = new List<BigInteger>() {5, 6, 7, 8, 9};
             var perms = Permutations(i);
 
             var vms = new List<Vm>
@@ -73,7 +74,7 @@ namespace Days
                 new Vm(_instructions)
             };
 
-            var max = int.MinValue;
+            var max = new BigInteger(int.MinValue);
             foreach (var p in perms)
             {
                 vms[0].SetInitialInput(p[0].Singleton().ToList());
@@ -96,7 +97,7 @@ namespace Days
                     vms[0].AddInput(vms[4].LastOutput());
                 } while (vms.Any(vm => vm.WaitForInput));
 
-                max = Math.Max(max, vms[4].LastOutput());
+                max = BigInteger.Max(max, vms[4].LastOutput());
             }
 
             return max.ToString();

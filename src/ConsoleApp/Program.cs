@@ -21,8 +21,12 @@ namespace ConsoleApp
             //DayRunner.Run(day06);
             //var day07 = new Day07();
             //DayRunner.Run(day07);
-            var day08 = new Day08();
-            DayRunner.Run(day08);
+            //var day08 = new Day08();
+            //DayRunner.Run(day08);
+            var day09 = new Day09();
+            DayRunner.Run(day09);
+            //var day10 = new Day10();
+            //DayRunner.Run(day10);
         }
     }
 }

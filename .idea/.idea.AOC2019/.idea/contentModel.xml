@@ -29,6 +29,8 @@
           <e p="Day06.cs" t="Include" />
           <e p="Day07.cs" t="Include" />
           <e p="Day08.cs" t="Include" />
+          <e p="Day09.cs" t="Include" />
+          <e p="Day10.cs" t="Include" />
           <e p="DayRunner.cs" t="Include" />
           <e p="Days.csproj" t="IncludeRecursive" />
           <e p="Extensions" t="Include">
@@ -47,6 +49,7 @@
             <e p="MultiplyOp.cs" t="Include" />
             <e p="OpCode.cs" t="Include" />
             <e p="OutputOp.cs" t="Include" />
+            <e p="RelativeBaseOp.cs" t="Include" />
             <e p="Vm.cs" t="Include" />
           </e>
           <e p="bin" t="ExcludeRecursive" />
@@ -58,6 +61,10 @@
             <e p="day06.txt" t="Include" />
             <e p="day07.txt" t="Include" />
             <e p="day08.txt" t="Include" />
+            <e p="day09.txt" t="Include" />
+            <e p="day09test.txt" t="Include" />
+            <e p="day10.txt" t="Include" />
+            <e p="day10test.txt" t="Include" />
           </e>
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using Days.IntCode;
 
 namespace Days
@@ -8,13 +9,13 @@ namespace Days
     public class Day02 : IDay
     {
 
-        private List<int> _nums;
+        private List<BigInteger> _nums;
         private Vm vm;
         public Day02()
         {
             _nums = File.ReadAllText("input/day02.txt")
                 .Split(',')
-                .Select(x => int.Parse(x)).ToList();
+                .Select(x => BigInteger.Parse(x)).ToList();
             vm = new Vm(_nums);
         }
         public string Part1()

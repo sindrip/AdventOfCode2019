@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Days.IntCode
 {
@@ -6,6 +7,6 @@ namespace Days.IntCode
     {
         OpCode Op { get; }
         IList<int> ParameterMode { get; }
-        int OpWidth { get; }
+        BigInteger OpWidth { get; }
     }
 }
