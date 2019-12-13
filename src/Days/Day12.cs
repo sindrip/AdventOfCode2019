@@ -43,12 +43,33 @@ namespace Days
             foreach (var m in _moons)
                 m.Reset();
 
-            var xs = _moons.Select(m => (m.X, 0)).ToList();
-            var origXs = new List<(int, int)>(xs);
-            //var ys = _moons.Select(m => (m.Y, 0));
-            //var zs = _moons.Select(m => (m.Z, 0));
+            var i = 0;
+            var x = 0;
+            var y = 0;
+            var z = 0;
+            while (x == 0 || y == 0 || z == 0)
+            {
+                i++;
+                foreach (var m1 in _moons)
+                {
+                    foreach (var m2 in _moons)
+                        m1.CalculateAttraction(m2);
+                }
 
-            return "";
+                foreach (var m in _moons)
+                    m.Update();
+
+                if (_moons.All(m => m.IsInitialX()))
+                    x = i;
+                if (_moons.All(m => m.IsInitialY()))
+                    y = i;
+                if (_moons.All(m => m.IsInitialZ()))
+                    z = i;
+            }
+
+            return LCM(x, LCM(y, z)).ToString();
+
+            return $"{x}, {y}, {z}";
         }
 
         private class Moon
@@ -87,6 +108,10 @@ namespace Days
 
             public bool IsInitial() => (X, Y, Z) == (initX, initY, initZ) && (dx,dy,dz) == (0,0,0);
 
+            public bool IsInitialX() => X == initX && dx == 0;
+            public bool IsInitialY() => Y == initY && dy == 0;
+            public bool IsInitialZ() => Z == initZ && dz == 0;
+
             public void Reset()
             {
                 (X, Y, Z) = (initX, initY, initZ);
@@ -95,6 +120,9 @@ namespace Days
 
             public override string ToString() => $"pos: ({X},{Y},{Z}), vel:({dx},{dy},{dz})";
         }
+        
+        private static BigInteger GCD(BigInteger n, BigInteger d) => d == 0 ? BigInteger.Abs(n) : GCD(d, n % d);
+        private static BigInteger LCM(BigInteger n, BigInteger d) => (n * d) / GCD(n, d);
 
     }
 }
