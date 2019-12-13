@@ -15,6 +15,7 @@ namespace Days
                 .Split(',')
                 .Select(x => BigInteger.Parse(x)).ToList();
         }
+        
         public string Part1()
         {
             var vm = new Vm(_instructions);

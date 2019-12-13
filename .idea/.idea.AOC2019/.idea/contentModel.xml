@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/.Rider2019.2/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2019.2/system/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_AOC2019.1527103462.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.3/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.3/system/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_AOC2019.1527103462.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p=".git/info/exclude" t="IncludeRecursive" />
       <e p="AOC2019.sln" t="IncludeFlat" />
@@ -31,6 +31,9 @@
           <e p="Day08.cs" t="Include" />
           <e p="Day09.cs" t="Include" />
           <e p="Day10.cs" t="Include" />
+          <e p="Day11.cs" t="Include" />
+          <e p="Day12.cs" t="Include" />
+          <e p="Day13.cs" t="Include" />
           <e p="DayRunner.cs" t="Include" />
           <e p="Days.csproj" t="IncludeRecursive" />
           <e p="Extensions" t="Include">
@@ -62,9 +65,10 @@
             <e p="day07.txt" t="Include" />
             <e p="day08.txt" t="Include" />
             <e p="day09.txt" t="Include" />
-            <e p="day09test.txt" t="Include" />
             <e p="day10.txt" t="Include" />
-            <e p="day10test.txt" t="Include" />
+            <e p="day11.txt" t="Include" />
+            <e p="day12.txt" t="Include" />
+            <e p="day13.txt" t="Include" />
           </e>
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">

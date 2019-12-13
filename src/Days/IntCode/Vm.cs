@@ -295,5 +295,7 @@ namespace Days.IntCode
 
         private void SendOutput(BigInteger output) => Output.Add(output);
         public BigInteger LastOutput() => Output.Last();
+
+        public void DeleteOutput() => Output = new List<BigInteger>();
     }
 }
